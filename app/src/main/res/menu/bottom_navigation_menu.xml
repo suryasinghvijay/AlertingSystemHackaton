@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pending_alert"
+        android:enabled="true"
+        android:icon="@drawable/ic_pending_alert"
+        android:title="Pending alert"/>
+    <item
+        android:id="@+id/done_alert"
+        android:enabled="true"
+        android:icon="@drawable/ic_done_alert"
+        android:title="Acknowledged"/>
+</menu>

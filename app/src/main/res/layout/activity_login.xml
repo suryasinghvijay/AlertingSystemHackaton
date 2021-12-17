@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".feature.ui.LoginActivity">
 
     <TextView
         android:id="@+id/welcome"
@@ -57,7 +57,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_email_lbl"
-        style="@style/TextInputLayout.CustomInputLayout"
+        style="@style/TextInputLayout.DropDown"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
         android:hint="Email ID"
@@ -65,10 +65,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline2">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
+        <AutoCompleteTextView
             android:textSize="14sp"
-            style="@style/TextInputEditText.CustomInputLayout" />
+            android:hint="Username"
+            android:id="@+id/autocomplete_hub_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

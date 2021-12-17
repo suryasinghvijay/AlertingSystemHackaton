@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_navigation.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/border_orange.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/bottom_navigation_background.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/drawable/button_background.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/drawable/ic_outlook.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/fragment_active_alert.xml" value="0.2953125" />
+        <entry key="app/src/main/res/layout/members_list.xml" value="0.2953125" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2953125" />
       </map>
     </option>
   </component>
