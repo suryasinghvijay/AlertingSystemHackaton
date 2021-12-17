@@ -3,9 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/button_background.xml" value="0.30666666666666664" />
-        <entry key="app/src/main/res/drawable/ic_outlook.xml" value="0.30666666666666664" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/activity_event_details_layout.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4348958333333333" />
       </map>
     </option>
   </component>

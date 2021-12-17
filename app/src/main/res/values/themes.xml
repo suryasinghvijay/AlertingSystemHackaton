@@ -34,4 +34,25 @@
         <item name="android:textColorHint">@color/colorGrayDark_99000000</item>
     </style>
 
+    <style name="BaseTextViewStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorGrayDark_4F6367</item>
+    </style>
+
+    <style name="BaseTextViewStyle.Header1">
+        <item name="android:textSize">@dimen/text_size_header1</item>
+    </style>
+
+    <style name="BaseTextViewStyle.Body1">
+        <item name="android:textSize">@dimen/text_size_body1</item>
+    </style>
+
+    <style name="BaseTextViewStyle.Body2">
+        <item name="android:textSize">@dimen/text_size_body2</item>
+    </style>
+
+    <style name="BaseTextViewStyle.Body3">
+        <item name="android:textSize">@dimen/text_size_body3</item>
+    </style>
 </resources>
