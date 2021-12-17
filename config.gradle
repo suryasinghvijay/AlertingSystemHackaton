@@ -1,0 +1,77 @@
+def configuration = [
+        applicationId    : "com.gdn.tms.android.alertingsystemhackaton",
+        versionMajor     : 1,
+        versionMedium    : 2,
+        versionMinor     : 0,
+        buildNum         : 1,
+        buildToolsVersion: "30.0.1",
+        compileSdkVersion: 30,
+        minSdkVersion    : 19,
+        targetSdkVersion : 30
+]
+
+ext.configuration = configuration
+
+ext.buildVersionCode = {
+    if (isVersionMajorInRange() && isVersionMediumInRange() && isVersionMinorInRange() && isbuildNumberInRange()) {
+        return (100 * configuration.versionMajor + 10 * configuration.versionMedium + configuration.versionMinor) * 1000 + configuration.buildNum
+    } else {
+        throw new Exception(""" Wrong value taken - excepted values
+ 0-20999 0-9    0-9      0-999
+ Major   Med   Minor  buildNum""")
+    }
+}
+ext.buildVersionName = {
+    return configuration.versionMajor + "." + configuration.versionMedium + "." + configuration.versionMinor
+}
+ext.isVersionMajorInRange = {
+    if (configuration.versionMajor >= 0 && configuration.versionMajor <= 20999) return true else false
+}
+ext.isVersionMediumInRange = {
+    if (configuration.versionMedium >= 0 && configuration.versionMedium <= 9) return true else false
+}
+ext.isVersionMinorInRange = {
+    if (configuration.versionMinor >= 0 && configuration.versionMinor <= 9) return true else false
+}
+ext.isbuildNumberInRange = {
+    if (configuration.buildNum >= 0 && configuration.buildNum <= 999) return true else false
+}
+/*last version supported by android is 2100_000_000
+
+last version supported by this method would be 2099_999_999
+
+ 0-20999 0-9    0-9      0-999
+ Major   Med   Minor  buildNum
+*/
+ext.loadFile = {
+    Properties versionProps = new Properties()
+    def versionPropsFile = file('version.properties')
+    if (versionPropsFile.exists())
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+    def previousPropsBuildNumber = versionProps['buildNum']
+    if (versionProps['buildNum'] == null) versionProps['buildNum'] = configuration.buildNum.toString() else configuration.buildNum = versionProps['buildNum'] as Integer
+    if (previousPropsBuildNumber != versionProps['buildNum']) {
+        versionProps.store(versionPropsFile.newWriter(), null)
+    }
+}
+
+ext.increment = {
+    Properties versionProps = new Properties()
+    def versionPropsFile = file('version.properties')
+    if (versionPropsFile.exists())
+        versionProps.load(new FileInputStream(versionPropsFile))
+    if (versionProps['buildNum'] == null) {
+        configuration.buildNum = configuration.buildNum + 1
+    } else {
+        configuration.buildNum = "${versionProps['buildNum'].toInteger() + 1}"
+    }
+    versionProps['buildNum'] = configuration.buildNum.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+}
+
+ext.printVersionFile = {
+    def versionPropsFile = file('version.properties')
+    if (versionPropsFile.exists())
+        println versionPropsFile.text
+}
