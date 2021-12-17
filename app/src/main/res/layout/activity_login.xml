@@ -4,32 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".feature.ui.LoginActivity">
 
     <TextView
         android:id="@+id/welcome"
+        style="@style/BaseTextViewStyle.Header1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:text="Welcome,"
         android:textColor="@color/black"
-        android:textSize="21sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/welcome_desc"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/welcome_desc"
+        style="@style/BaseTextViewStyle.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="Sign in to continue!"
+        android:text="Login in to continue!"
         android:textColor="@color/grey"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -51,7 +51,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
             android:inputType="textPassword"
-            android:textSize="14sp"
+            android:textSize="16sp"
             style="@style/TextInputEditText.CustomInputLayout" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,15 +60,18 @@
         style="@style/TextInputLayout.CustomInputLayout"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
-        android:hint="Email ID"
+        android:hint="Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline2">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
-            android:textSize="14sp"
-            style="@style/TextInputEditText.CustomInputLayout" />
+        <AutoCompleteTextView
+            android:textSize="16sp"
+            android:id="@+id/autocomplete_hub_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
