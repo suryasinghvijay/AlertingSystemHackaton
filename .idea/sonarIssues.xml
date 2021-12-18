@@ -8,6 +8,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/.gradle/caches/transforms-3/2df433c9f59e724c554d5a8f6d82cef5/transformed/jetified-base_release_1.1.7/jars/classes.jar!/com/coviam/base/BaseAppController.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/.gradle/caches/transforms-3/2df433c9f59e724c554d5a8f6d82cef5/transformed/jetified-base_release_1.1.7/jars/classes.jar!/com/coviam/base/di/component/BaseAppComponent.class">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.idea/misc.xml">
           <value>
             <set />
@@ -19,6 +29,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/gdn/tms/android/alertingsystemhackaton/feature/ui/AlertDetailsActivity_GeneratedInjector.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/gdn/tms/android/alertingsystemhackaton/di/module/AppModule.java">
           <value>
             <set />
           </value>
@@ -44,6 +59,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/SingleLiveEvent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/di/AppComponent.kt">
           <value>
             <set />
           </value>
@@ -78,7 +98,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/Members.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/NotificationRequest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/repository/BaseRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/repository/DashboardWorkManager.kt">
           <value>
             <set />
           </value>

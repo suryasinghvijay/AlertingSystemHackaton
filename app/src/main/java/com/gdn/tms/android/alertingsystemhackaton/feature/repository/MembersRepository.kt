@@ -13,4 +13,9 @@ class MembersRepository @Inject constructor(private val apiService: ApiService) 
     safeApiCall(networkCoroutineDispatcher){
       apiService.fetchAlerts(squad, page, size)
   }
+
+  suspend fun fetchNotification(user: String, medium: String) =
+    safeApiCall(networkCoroutineDispatcher){
+      apiService.fetchNotification(user, medium)
+    }
 }

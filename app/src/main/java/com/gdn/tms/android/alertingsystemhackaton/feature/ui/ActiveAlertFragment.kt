@@ -1,6 +1,13 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -58,6 +65,36 @@ const val EVENT_DETAILS ="eventDetails"
       Log.e("adapter instance", activeAdapter.toString())
       activeAdapter?.appendDataToList(it.contents.toMutableList())
     })
+
+    activityViewModel.notificationLiveData.observe(viewLifecycleOwner, {
+      generateNotification()
+    })
+  }
+
+  private fun generateNotification() {
+    val intent = Intent(context, DashboardActivity::class.java)
+    val pendingIntent =
+      PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    val notificationManager =
+      context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      val notificationChannel =
+        NotificationChannel("1", "alert", NotificationManager.IMPORTANCE_HIGH)
+      notificationChannel.enableLights(true)
+      notificationChannel.lightColor = Color.RED
+      notificationChannel.enableVibration(false)
+      notificationManager.createNotificationChannel(notificationChannel) //        .setContent(contentView)
+      val builder =
+        Notification.Builder(context, "1").setSmallIcon(R.drawable.ic_launcher_background)
+          .setContentIntent(pendingIntent)
+
+      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+
+    } else { //        .setContent(contentView)
+      val builder = Notification.Builder(context).setSmallIcon(R.drawable.ic_launcher_background)
+        .setContentIntent(pendingIntent)
+      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+    }
   }
 
   override fun navigateToDetailsScreen(alertDetails: AlertDetails) {

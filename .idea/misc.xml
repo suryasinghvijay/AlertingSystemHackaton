@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/green_button_background.xml" value="0.4441025641025641" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.4441025641025641" />
         <entry key="app/src/main/res/drawable/ic_bell.xml" value="0.4441025641025641" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.4348958333333333" />
         <entry key="app/src/main/res/layout/activity_event_details_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
