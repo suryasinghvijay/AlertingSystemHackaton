@@ -15,18 +15,18 @@ import com.gdn.tms.android.alertingsystemhackaton.feature.model.NotificationMode
 class NotificationAdapter(
   private val notificationList: MutableList<NotificationModel>,
   private val communicator: NotificationCommunicator,
-) : RecyclerView.Adapter<NotificationAdapter.AlertAdapterViewHolder>() {
+) : RecyclerView.Adapter<NotificationAdapter.NotificationAdapterViewHolder>() {
 
   override fun onCreateViewHolder(
     viewGroup: ViewGroup, viewType: Int
   ) =
-    AlertAdapterViewHolder(LayoutInflater.from(viewGroup.context).inflate(
-      R.layout.fragment_alert_adapter, viewGroup, false
+    NotificationAdapterViewHolder(LayoutInflater.from(viewGroup.context).inflate(
+      R.layout.item_notification, viewGroup, false
     ))
 
-  override fun onBindViewHolder(holder: AlertAdapterViewHolder, position: Int) {
+  override fun onBindViewHolder(holder: NotificationAdapterViewHolder, position: Int) {
 
-    holder.binding?.tvSentTo?.text = notificationList[position].sentTo
+    holder.binding?.tvSentTo?.text = "Pic : ${notificationList[position].picName}"
     holder.binding?.tvSummary?.text = notificationList[position].summary
     holder.binding?.tvDetails?.text = notificationList[position].details
     holder.binding?.tvCreated?.text = notificationList[position].createdDate
@@ -35,7 +35,7 @@ class NotificationAdapter(
 
   override fun getItemCount() = notificationList.size
 
-  class AlertAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+  class NotificationAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var binding: ItemNotificationBinding? = null
 
     init {

@@ -44,12 +44,6 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     binding.recycleView.apply {
       notificationAdapter = NotificationAdapter(mutableListOf(), this@NotificationFragment)
       this.adapter = notificationAdapter
-      addItemDecoration(
-        DividerItemDecoration(
-          this.context,
-          LinearLayoutManager.VERTICAL
-        )
-      )
     }
   }
 
