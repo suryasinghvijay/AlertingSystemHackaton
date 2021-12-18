@@ -21,6 +21,7 @@ import com.gdn.tms.android.alertingsystemhackaton.R
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentActiveAlertBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.AlertFragmentCommunicator
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
+import com.gdn.tms.android.alertingsystemhackaton.feature.model.NotificationModel
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 const val PENDING ="pending"
@@ -104,5 +105,4 @@ const val EVENT_DETAILS ="eventDetails"
       startActivity(this)
     }
   }
-
 }
