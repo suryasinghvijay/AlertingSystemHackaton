@@ -42,6 +42,6 @@ const val SHARED_PREFERENCES_NAME = "AlertingSystem"
 
   @Provides fun provideGson(): Gson = GsonBuilder().create()
 
-  @Provides @Singleton fun providePreLoginService(retrofit: Retrofit): ApiService =
+  @Provides @Singleton fun provideApiService(retrofit: Retrofit): ApiService =
     retrofit.create(ApiService::class.java)
 }
