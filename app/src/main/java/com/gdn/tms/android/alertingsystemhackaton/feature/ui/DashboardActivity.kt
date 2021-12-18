@@ -2,25 +2,28 @@ package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.gdn.tms.android.alertingsystemhackaton.R
+import com.gdn.tms.android.alertingsystemhackaton.databinding.ActivityDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_dashboard.bottom_navigation
-import kotlinx.android.synthetic.main.activity_dashboard.toolbar
 
 @AndroidEntryPoint class DashboardActivity : AppCompatActivity() {
   private lateinit var navController: NavController
+  private lateinit var binding : ActivityDashboardBinding
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_dashboard)
+    binding = ActivityDashboardBinding.inflate(layoutInflater)
+    setContentView(binding.root)
     setUpNavigationController()
   }
 
   private fun setUpNavigationController() {
-    setSupportActionBar(toolbar)
+    setSupportActionBar(binding.toolbar)
     supportActionBar?.apply {
       setDisplayHomeAsUpEnabled(true)
       setDisplayShowTitleEnabled(true)
@@ -37,5 +40,10 @@ import kotlinx.android.synthetic.main.activity_dashboard.toolbar
 //        }
 //      }
 //    }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.home_menu, menu);
+    return true
   }
 }

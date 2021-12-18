@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdn.tms.android.alertingsystemhackaton.R
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentActiveAlertBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.AlertFragmentCommunicator
+import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 const val DONE ="done"
@@ -55,5 +56,9 @@ const val DONE ="done"
       Log.e("adapter instance", activeAdapter.toString())
       activeAdapter?.appendDataToList(it.contents.toMutableList())
     })
+  }
+
+  override fun navigateToDetailsScreen(alertDetails: AlertDetails) {
+    //Todo
   }
 }

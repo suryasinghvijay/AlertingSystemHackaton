@@ -1,5 +1,6 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdn.tms.android.alertingsystemhackaton.R
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentActiveAlertBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.AlertFragmentCommunicator
+import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 const val PENDING ="pending"
+const val EVENT_DETAILS ="eventDetails"
 @AndroidEntryPoint class ActiveAlertFragment : Fragment(), AlertFragmentCommunicator {
   private val activityViewModel: DashboardActivityViewModel by activityViewModels()
   private lateinit var binding: FragmentActiveAlertBinding
@@ -55,6 +58,14 @@ const val PENDING ="pending"
       Log.e("adapter instance", activeAdapter.toString())
       activeAdapter?.appendDataToList(it.contents.toMutableList())
     })
+  }
+
+  override fun navigateToDetailsScreen(alertDetails: AlertDetails) {
+    val bundle = Bundle().apply { putParcelable(EVENT_DETAILS, alertDetails) }
+    Intent(requireContext(), AlertDetailsActivity::class.java).apply {
+      putExtras(bundle)
+      startActivity(this)
+    }
   }
 
 }

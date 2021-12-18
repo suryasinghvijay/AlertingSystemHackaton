@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gdn.tms.android.alertingsystemhackaton" >
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.gdn.tms.android.alertingsystemhackaton">
 
     <application
         android:name=".AlertingSystemApplication"
@@ -12,7 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlertingSystemHackaton"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".feature.ui.AlertDetailsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_allert_details"
+            android:theme="@style/Theme.AlertingSystemHackaton.NoActionBar" />
         <activity
             android:name=".feature.ui.DashboardActivity"
             android:exported="false" />
@@ -21,7 +24,7 @@
             android:exported="false" />
         <activity
             android:name=".feature.ui.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,5 +32,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

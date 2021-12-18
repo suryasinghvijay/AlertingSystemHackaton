@@ -6,4 +6,5 @@
     <dimen name="text_size_body2">16sp</dimen>
     <dimen name="text_size_body3">14sp</dimen>
     <dimen name="text_size_footer">12sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

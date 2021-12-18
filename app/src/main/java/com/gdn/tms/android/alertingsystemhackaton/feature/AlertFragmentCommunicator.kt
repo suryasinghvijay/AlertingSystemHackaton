@@ -1,3 +1,7 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature
 
-interface AlertFragmentCommunicator {}
+import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
+
+interface AlertFragmentCommunicator {
+  fun navigateToDetailsScreen(alertDetails: AlertDetails)
+}

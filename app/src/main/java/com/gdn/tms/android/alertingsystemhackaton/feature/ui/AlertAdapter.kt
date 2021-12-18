@@ -26,28 +26,29 @@ class AlertAdapter(
   override fun onBindViewHolder(holder: AlertAdapterViewHolder, position: Int) {
     if (alertType == PENDING){
       holder.binding?.tvEventDesc?.context?.let {
-        ContextCompat.getColor(it, R.color.black)
+        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
       }
       holder.binding?.tvEventPriority?.context?.let {
-        ContextCompat.getColor(it, R.color.black)
+        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
       }
       holder.binding?.tvEventSquad?.context?.let {
-        ContextCompat.getColor(it, R.color.black)
+        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
       }
     } else {
       holder.binding?.tvEventDesc?.context?.let {
-        ContextCompat.getColor(it, R.color.colorRed_FF0000)
+        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.grey))
       }
       holder.binding?.tvEventPriority?.context?.let {
-        ContextCompat.getColor(it, R.color.colorRed_FF0000)
+        holder.binding?.tvEventPriority?.setTextColor(ContextCompat.getColor(it, R.color.grey))
       }
       holder.binding?.tvEventSquad?.context?.let {
-        ContextCompat.getColor(it, R.color.colorRed_FF0000)
+        holder.binding?.tvEventSquad?.setTextColor(ContextCompat.getColor(it, R.color.grey))
       }
     }
     holder.binding?.tvEventDesc?.text = alertList[position].summary
     holder.binding?.tvEventPriority?.text = alertList[position].severity
     holder.binding?.tvEventSquad?.text = alertList[position].squad
+    holder.binding?.root?.setOnClickListener { communicator.navigateToDetailsScreen(alertList[holder.absoluteAdapterPosition]) }
   }
 
   override fun getItemCount() = alertList.size

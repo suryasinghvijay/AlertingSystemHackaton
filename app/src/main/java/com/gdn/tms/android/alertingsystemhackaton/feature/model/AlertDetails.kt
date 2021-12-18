@@ -1,7 +1,10 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class AlertDetails(
     @SerializedName("details")
     val details: String,
@@ -23,4 +26,4 @@ data class AlertDetails(
     val updatedBy: String,
     @SerializedName("updatedDate")
     val updatedDate: String
-)
+):Parcelable

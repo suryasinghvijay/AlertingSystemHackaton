@@ -67,4 +67,13 @@
     <style name="BaseTextViewStyle.Body3">
         <item name="android:textSize">@dimen/text_size_body3</item>
     </style>
+
+    <style name="Theme.AlertingSystemHackaton.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AlertingSystemHackaton.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AlertingSystemHackaton.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
