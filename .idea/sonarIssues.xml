@@ -103,6 +103,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/NotificationModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/NotificationRequest.kt">
           <value>
             <set />
