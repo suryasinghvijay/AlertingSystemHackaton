@@ -1,69 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".feature.ui.AlertAdapter">
+    app:cardCornerRadius="8dp"
+    android:elevation="4dp"
+    android:layout_margin="8dp">
 
-    <TextView
-        android:id="@+id/tv_event_desc"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="[FIRING:1] kafka_lag_big_seller (aggregate_module_business_partner critical com.gdn.x.product.offlineitem.change.big.seller)" />
+        tools:context=".feature.ui.AlertAdapter">
 
-    <TextView
-        android:id="@+id/tv_event_priority"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="High" />
+        <TextView
+            android:id="@+id/tv_event_squad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            style="@style/BaseTextViewStyle.Body2"
+            android:textColor="@color/colorGrayDark_4F6367"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/barrier3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Infra DevOps - GCP" />
 
-    <TextView
-        android:id="@+id/tv_event_squad"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_event_priority"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Infra DevOps - GCP" />
+        <TextView
+            android:id="@+id/tv_event_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            style="@style/BaseTextViewStyle.Body2"
+            android:textColor="@color/colorGrayDark_4F6367"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/barrier3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_priority"
+            tools:text="[FIRING:1] kafka_lag_big_seller (aggregate_module_business_partner critical com.gdn.x.product.offlineitem.change.big.seller)" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".8" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            style="@style/BaseTextViewStyle.Body2"
+            android:textColor="@color/black"
+            android:text="Squad :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".5" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            style="@style/BaseTextViewStyle.Body2"
+            android:textColor="@color/black"
+            android:text="Priority :"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_event_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            tools:text="High"
+            style="@style/BaseTextViewStyle.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/barrier3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_squad" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            style="@style/BaseTextViewStyle.Body2"
+            android:textColor="@color/black"
+            android:text="Summary :"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="textView13,textView6,textView2" />
+
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_event_priority"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginBottom="4dp"-->
+        <!--        android:layout_marginEnd="4dp"-->
+        <!--        android:layout_marginStart="4dp"-->
+        <!--        android:layout_marginTop="4dp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:textColor="@color/black"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintEnd_toStartOf="@+id/guideline4"-->
+        <!--        app:layout_constraintStart_toStartOf="@+id/guideline3"-->
+        <!--        app:layout_constraintTop_toTopOf="parent"-->
+        <!--        tools:text="High" />-->
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/tv_event_squad"-->
+        <!--        android:layout_width="0dp"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginBottom="4dp"-->
+        <!--        android:layout_marginEnd="4dp"-->
+        <!--        android:layout_marginStart="4dp"-->
+        <!--        android:layout_marginTop="4dp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:textColor="@color/black"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintStart_toEndOf="@+id/tv_event_priority"-->
+        <!--        app:layout_constraintTop_toTopOf="parent"-->
+        <!--        tools:text="Infra DevOps - GCP" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

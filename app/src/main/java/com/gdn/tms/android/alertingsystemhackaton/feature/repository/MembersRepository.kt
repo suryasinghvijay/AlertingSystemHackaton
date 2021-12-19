@@ -7,6 +7,8 @@ import javax.inject.Inject
 class MembersRepository @Inject constructor(private val apiService: ApiService) : BaseRepository() {
   suspend fun getMembers() = apiService.getMembers()
 
+  suspend fun getSquadDetails(username:String) = apiService.getSquadDetails(username)
+
   suspend fun fetchActiveAlertFromServer(squad: String,
     page: Int,
     size: Int) =

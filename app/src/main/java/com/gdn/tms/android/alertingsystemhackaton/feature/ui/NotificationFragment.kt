@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdn.tms.android.alertingsystemhackaton.R
+import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentActiveAlertBinding
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentNotificationBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.NotificationModel
@@ -37,7 +38,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
-    activityViewModel.fetchNotification("abcd", "medium")
+    activityViewModel.fetchNotification(UserDetails.getUserName()?:"", "APP")
   }
 
   private fun initializeAdapter() {

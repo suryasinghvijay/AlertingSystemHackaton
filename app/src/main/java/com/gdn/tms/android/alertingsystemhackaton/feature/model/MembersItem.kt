@@ -3,8 +3,10 @@ package com.gdn.tms.android.alertingsystemhackaton.feature.model
 import com.google.gson.annotations.SerializedName
 
 data class MembersItem(
-    @SerializedName("email") val email: String,
-    @SerializedName("id") val id: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("phone") val phone: String
+  @SerializedName("email") var email: String? = null,
+  @SerializedName("id") var id: String? = null,
+  @SerializedName("name") var name: String? = null,
+  @SerializedName("phone") var phone: String? = null,
+  var squadName: String? = null,
+  var notificationId: String? = null
 )

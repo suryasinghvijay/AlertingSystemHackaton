@@ -44,6 +44,7 @@ class NotificationAdapter(
   }
 
   fun appendDataToList(updateList: MutableList<NotificationModel>){
+    notificationList.clear()
     notificationList.addAll(updateList)
     notifyDataSetChanged()
   }

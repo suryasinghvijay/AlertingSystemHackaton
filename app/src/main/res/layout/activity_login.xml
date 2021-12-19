@@ -67,7 +67,7 @@
 
         <AutoCompleteTextView
             android:textSize="16sp"
-            android:id="@+id/autocomplete_hub_search"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"

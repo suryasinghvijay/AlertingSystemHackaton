@@ -63,6 +63,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/UserDetails.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/di/AppComponent.kt">
           <value>
             <set />
@@ -99,6 +104,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/Members.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/model/MembersItem.kt">
           <value>
             <set />
           </value>
@@ -158,7 +168,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/ui/LoginActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/ui/NotificationAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/ui/NotificationFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/viewmodel/DashboardActivityViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/gdn/tms/android/alertingsystemhackaton/feature/viewmodel/MembersViewModel.kt">
           <value>
             <set />
           </value>
@@ -224,6 +254,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_alert_adapter.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_notification.xml">
           <value>
             <set />
           </value>

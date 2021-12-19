@@ -9,14 +9,18 @@
     <color name="grey">#A1A0A0</color>
     <color name="light_grey">#CACACA</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#B3FE5F55</color>
-    <color name="primaryDark">#FF8A80</color>
+    <color name="colorPrimary">#4F6367</color>
+    <color name="primaryDark">#4F6367</color>
     <color name="colorGrayLight_E0E0E0">#E0E0E0</color>
     <color name="colorGrayDark_99000000">#99000000</color>
     <color name="colorGrayDark_4F6367">#4F6367</color>
     <color name="colorGreen_2A9D8F">#2A9D8F</color>
     <color name="colorRed_FF0000">#FF0000</color>
     <color name="colorButton">#4F6367</color>
+    <color name="colorBackground">#EEF5DB</color>
+    <color name="colorOrange">#B3FE5F55</color>
+    <color name="toolbarColor">#7A9E9F</color>
+
     <!--
         <color name="colorPrimary">#7A9E9F</color>
 -->

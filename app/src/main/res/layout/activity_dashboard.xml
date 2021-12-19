@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".feature.ui.DashboardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,6 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/toolbarColor"
             app:layout_collapseMode="pin"
             app:menu="@menu/home_menu"
             app:titleTextColor="@color/white" />

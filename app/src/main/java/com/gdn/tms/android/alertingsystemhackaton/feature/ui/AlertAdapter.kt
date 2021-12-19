@@ -12,7 +12,7 @@ import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 
 class AlertAdapter(
   private val alertList: MutableList<AlertDetails>,
-  val communicator: AlertFragmentCommunicator,
+  private val communicator: AlertFragmentCommunicator,
   private val alertType: String
 ) : RecyclerView.Adapter<AlertAdapter.AlertAdapterViewHolder>() {
 
@@ -24,27 +24,6 @@ class AlertAdapter(
     ))
 
   override fun onBindViewHolder(holder: AlertAdapterViewHolder, position: Int) {
-    if (alertType == PENDING){
-      holder.binding?.tvEventDesc?.context?.let {
-        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
-      }
-      holder.binding?.tvEventPriority?.context?.let {
-        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
-      }
-      holder.binding?.tvEventSquad?.context?.let {
-        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.black))
-      }
-    } else {
-      holder.binding?.tvEventDesc?.context?.let {
-        holder.binding?.tvEventDesc?.setTextColor(ContextCompat.getColor(it, R.color.grey))
-      }
-      holder.binding?.tvEventPriority?.context?.let {
-        holder.binding?.tvEventPriority?.setTextColor(ContextCompat.getColor(it, R.color.grey))
-      }
-      holder.binding?.tvEventSquad?.context?.let {
-        holder.binding?.tvEventSquad?.setTextColor(ContextCompat.getColor(it, R.color.grey))
-      }
-    }
     holder.binding?.tvEventDesc?.text = alertList[position].summary
     holder.binding?.tvEventPriority?.text = alertList[position].severity
     holder.binding?.tvEventSquad?.text = alertList[position].squad

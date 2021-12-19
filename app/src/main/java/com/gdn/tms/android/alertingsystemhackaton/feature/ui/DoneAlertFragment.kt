@@ -1,21 +1,23 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdn.tms.android.alertingsystemhackaton.R
+import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentActiveAlertBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.AlertFragmentCommunicator
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
-const val DONE ="done"
+
+const val DONE = "done"
+
 @AndroidEntryPoint class DoneAlertFragment : Fragment(), AlertFragmentCommunicator {
   private val activityViewModel: DashboardActivityViewModel by activityViewModels()
   private lateinit var binding: FragmentActiveAlertBinding
@@ -36,18 +38,13 @@ const val DONE ="done"
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
-    activityViewModel.fetchActiveAlertFromServer("abcd", 1, 10)
+    activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 1, 10)
   }
 
   private fun initializeAdapter() {
     binding.recycleView.apply {
       activeAdapter = AlertAdapter(mutableListOf(), this@DoneAlertFragment, DONE)
       this.adapter = activeAdapter
-      addItemDecoration(
-        DividerItemDecoration(
-          this.context, LinearLayoutManager.VERTICAL
-        )
-      )
     }
   }
 
@@ -59,6 +56,10 @@ const val DONE ="done"
   }
 
   override fun navigateToDetailsScreen(alertDetails: AlertDetails) {
-    //Todo
+    val bundle = Bundle().apply { putParcelable(EVENT_DETAILS, alertDetails) }
+    Intent(requireContext(), AlertDetailsActivity::class.java).apply {
+      putExtras(bundle)
+      startActivity(this)
+    }
   }
 }

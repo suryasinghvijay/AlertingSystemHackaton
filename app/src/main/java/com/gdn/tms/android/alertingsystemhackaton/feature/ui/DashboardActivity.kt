@@ -1,5 +1,13 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,6 +25,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.gdn.tms.android.alertingsystemhackaton.R
+import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.databinding.ActivityDashboardBinding
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,18 +38,52 @@ import kotlinx.android.synthetic.main.activity_dashboard.bottom_navigation
   private var handler :Handler? = null
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    Log.e("userDetails", UserDetails.toString())
     binding = ActivityDashboardBinding.inflate(layoutInflater)
     handler = Handler()
     setContentView(binding.root)
     setUpNavigationController()
     setUpWorkManager()
+    observeViewModel()
+  }
+
+  private fun observeViewModel() {
+    viewModel.notificationLiveData.observe(this, {
+      //generateNotification()
+    })
+  }
+
+  private fun generateNotification() {
+    val intent = Intent(this, DashboardActivity::class.java)
+    val pendingIntent =
+      PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    val notificationManager =
+      this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      val notificationChannel =
+        NotificationChannel("1", "alert", NotificationManager.IMPORTANCE_HIGH)
+      notificationChannel.enableLights(true)
+      notificationChannel.lightColor = Color.RED
+      notificationChannel.enableVibration(false)
+      notificationManager.createNotificationChannel(notificationChannel) //        .setContent(contentView)
+      val builder =
+        Notification.Builder(this, "1").setSmallIcon(R.drawable.ic_launcher_background)
+          .setContentIntent(pendingIntent)
+
+      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+
+    } else { //        .setContent(contentView)
+      val builder = Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher_background)
+        .setContentIntent(pendingIntent)
+      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+    }
   }
 
   private fun setUpWorkManager() {
     handler?.postDelayed(object : Runnable {
       override fun run() {
         Log.e("workmanager", "workmanager")
-       viewModel.fetchNotification("asd","asd")
+       viewModel.fetchNotification(UserDetails.getUserName()?:"","APP")
         handler?.postDelayed(this, 20000)
       }
     }, 1000)

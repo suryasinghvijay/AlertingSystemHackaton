@@ -3,16 +3,15 @@ package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.gdn.tms.android.alertingsystemhackaton.MainActivity
 import com.gdn.tms.android.alertingsystemhackaton.R
+import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.MembersViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_login.autocomplete_hub_search
 import kotlinx.android.synthetic.main.activity_login.btn_login
+import kotlinx.android.synthetic.main.activity_login.et_email
 import kotlinx.android.synthetic.main.activity_login.et_password
 
 @AndroidEntryPoint class LoginActivity : AppCompatActivity() {
@@ -31,17 +30,22 @@ import kotlinx.android.synthetic.main.activity_login.et_password
       if (et_password.text.isNullOrEmpty()){
         Toast.makeText(this, "Please enter the credentials", Toast.LENGTH_SHORT).show()
       }else{
-        startActivity(Intent(this, DashboardActivity::class.java))
+        mViewModel.fetchSquadDetails(et_email.text.toString())
       }
     }
 
-    autocomplete_hub_search.setOnClickListener {
-      autocomplete_hub_search.requestFocus()
+    et_email.setOnClickListener {
+      et_email.requestFocus()
     }
 
-    autocomplete_hub_search.setOnItemClickListener { parent, view, position, id ->
-      hubName = parent.getItemAtPosition(position).toString()
-      Log.e("",parent.toString())
+    et_email.setOnItemClickListener { parent, view, position, id ->
+      val userName = parent.getItemAtPosition(position).toString()
+     et_password.setText(userName)
+      mViewModel.membersLiveData.value?.first { it.name == userName }?.let {
+        UserDetails.updateUserDetails(
+          it
+        )
+      }
     }
   }
 
@@ -50,12 +54,17 @@ import kotlinx.android.synthetic.main.activity_login.et_password
     mViewModel.membersLiveData.observe(this, { member ->
       if (member.any()) {
         member.forEach {
-          members.add(it.name)
+          it.name?.let { it1 -> members.add(it1) }
         }
         val arrayAdapter =
           ArrayAdapter(this, R.layout.members_list, R.id.tv_hub_name, members)
-        autocomplete_hub_search.setAdapter(arrayAdapter)
+        et_email.setAdapter(arrayAdapter)
       }
+    })
+
+    mViewModel.squadDetailsLiveData.observe(this, {
+      UserDetails.updateSquadDetails(it)
+      startActivity(Intent(this, DashboardActivity::class.java))
     })
   }
 }
