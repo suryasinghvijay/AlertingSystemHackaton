@@ -30,7 +30,7 @@ class NotificationAdapter(
     holder.binding?.tvSummary?.text = notificationList[position].summary
     holder.binding?.tvDetails?.text = notificationList[position].details
     holder.binding?.tvCreated?.text = notificationList[position].createdDate
-    holder.binding?.root?.setOnClickListener { communicator.notification(notificationList[holder.absoluteAdapterPosition]) }
+    holder.binding?.btnAck?.setOnClickListener { communicator.notification(notificationList[holder.absoluteAdapterPosition]) }
   }
 
   override fun getItemCount() = notificationList.size

@@ -21,14 +21,17 @@ class DashboardActivityViewModel @Inject constructor(private val repository: Mem
   val exceptionHandler = SingleLiveEvent<String>()
 
 
-  fun fetchActiveAlertFromServer(squad: String,
-    page: Int,
-    size: Int){
+  fun fetchActiveAlertFromServer(
+    squad: String, page: Int, size: Int, state: String
+  ){
     viewModelScope.launch {
-      when(val res = repository.fetchActiveAlertFromServer(squad, page, size)){
+      when(val res = repository.fetchActiveAlertFromServer(squad, page, size, state)){
         is ResultWrapper.Success -> {
-          activeAlertLiveData.postValue(res.value!!)
-          pastAlertLiveData.postValue(res.value!!)
+          if (state =="OPEN"){
+            activeAlertLiveData.postValue(res.value!!)
+          } else {
+            pastAlertLiveData.postValue(res.value!!)
+          }
         }
         is ResultWrapper.HttpError -> {
           Log.e("exception", "httpError")
@@ -56,5 +59,21 @@ class DashboardActivityViewModel @Inject constructor(private val repository: Mem
       }
     }
 
+  }
+
+  fun acceptNotification(id: String, status: String) {
+    viewModelScope.launch {
+      when(val res = repository.acceptNotification(id, status)){
+        is ResultWrapper.Success -> {
+          notificationLiveData.postValue(res.value!!)
+        }
+        is ResultWrapper.HttpError -> {
+          Log.e("exception", "httpError")
+        }
+        is ResultWrapper.NetworkError -> {
+          Log.e("exception", "NetworkError")
+        }
+      }
+    }
   }
 }

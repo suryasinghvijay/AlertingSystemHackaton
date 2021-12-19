@@ -9,15 +9,19 @@ class MembersRepository @Inject constructor(private val apiService: ApiService) 
 
   suspend fun getSquadDetails(username:String) = apiService.getSquadDetails(username)
 
-  suspend fun fetchActiveAlertFromServer(squad: String,
-    page: Int,
-    size: Int) =
+  suspend fun fetchActiveAlertFromServer(
+    squad: String, page: Int, size: Int, state: String
+  ) =
     safeApiCall(networkCoroutineDispatcher){
-      apiService.fetchAlerts(squad, page, size)
+      apiService.fetchAlerts(squad, page, size, state)
   }
 
   suspend fun fetchNotification(user: String, medium: String) =
     safeApiCall(networkCoroutineDispatcher){
       apiService.fetchNotification(user, medium)
     }
+
+  suspend fun acceptNotification(id: String, status: String) = safeApiCall(networkCoroutineDispatcher){
+    apiService.acceptNotification(id, status)
+  }
 }

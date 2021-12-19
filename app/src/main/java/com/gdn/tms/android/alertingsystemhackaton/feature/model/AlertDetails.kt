@@ -8,6 +8,8 @@ import kotlinx.android.parcel.Parcelize
 data class AlertDetails(
     @SerializedName("details")
     val details: String,
+    @SerializedName("id")
+    val id: String,
     @SerializedName("generatedDate")
     val generatedDate: String,
     @SerializedName("sentBy")
@@ -23,7 +25,7 @@ data class AlertDetails(
     @SerializedName("summary")
     val summary: String,
     @SerializedName("updatedBy")
-    val updatedBy: String,
+    var updatedBy: String ?=null,
     @SerializedName("updatedDate")
-    val updatedDate: String
+    var updatedDate: String ?=null,
 ):Parcelable

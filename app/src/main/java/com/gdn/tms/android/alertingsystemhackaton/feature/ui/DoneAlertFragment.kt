@@ -38,7 +38,7 @@ const val DONE = "done"
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
-    activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 1, 10)
+    activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 0, 50, "ACKNOWLEDGED")
   }
 
   private fun initializeAdapter() {

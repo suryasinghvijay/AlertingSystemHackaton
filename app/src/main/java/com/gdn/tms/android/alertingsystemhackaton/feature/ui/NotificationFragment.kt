@@ -16,6 +16,7 @@ import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentNotificati
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.NotificationModel
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.item_notification.btn_ack
 
 @AndroidEntryPoint
 class NotificationFragment : Fragment(), NotificationCommunicator {
@@ -39,6 +40,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     observer()
     initializeAdapter()
     activityViewModel.fetchNotification(UserDetails.getUserName()?:"", "APP")
+
   }
 
   private fun initializeAdapter() {
@@ -58,7 +60,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
   }
 
   override fun notification(notificationModel: NotificationModel) {
-
+      activityViewModel.acceptNotification(notificationModel.id!!, notificationModel.alert.status)
   }
 }
 

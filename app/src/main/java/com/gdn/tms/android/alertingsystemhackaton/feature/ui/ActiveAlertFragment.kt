@@ -39,7 +39,7 @@ const val EVENT_DETAILS = "eventDetails"
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
-    activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 1, 100)
+    activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 0, 50, "OPEN")
   }
 
   private fun initializeAdapter() {

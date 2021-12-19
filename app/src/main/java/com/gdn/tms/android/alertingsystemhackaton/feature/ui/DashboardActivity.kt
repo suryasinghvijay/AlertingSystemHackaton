@@ -10,11 +10,9 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -30,6 +28,12 @@ import com.gdn.tms.android.alertingsystemhackaton.databinding.ActivityDashboardB
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_dashboard.bottom_navigation
+import android.content.ContentResolver
+import android.media.AudioAttributes
+import android.net.Uri
+import android.media.RingtoneManager
+
+import java.lang.Exception
 
 @AndroidEntryPoint class DashboardActivity : AppCompatActivity() {
   private lateinit var navController: NavController
@@ -49,33 +53,53 @@ import kotlinx.android.synthetic.main.activity_dashboard.bottom_navigation
 
   private fun observeViewModel() {
     viewModel.notificationLiveData.observe(this, {
-      //generateNotification()
+      generateNotification(it.size ?: 1)
     })
   }
 
-  private fun generateNotification() {
+  private fun generateNotification(size: Int) {
+    //playNotificationSound()
     val intent = Intent(this, DashboardActivity::class.java)
     val pendingIntent =
       PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     val notificationManager =
       this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val soundUri =
+      Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/" + R.raw.police_siren)
+    Log.e("sound", soundUri.toString())
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       val notificationChannel =
         NotificationChannel("1", "alert", NotificationManager.IMPORTANCE_HIGH)
       notificationChannel.enableLights(true)
       notificationChannel.lightColor = Color.RED
       notificationChannel.enableVibration(false)
-      notificationManager.createNotificationChannel(notificationChannel) //        .setContent(contentView)
+      val audioAttributes =
+        AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+          .setUsage(AudioAttributes.USAGE_NOTIFICATION).build()
+      notificationChannel.setSound(soundUri, audioAttributes)
+      notificationManager.createNotificationChannel(notificationChannel)
       val builder =
         Notification.Builder(this, "1").setSmallIcon(R.drawable.ic_launcher_background)
-          .setContentIntent(pendingIntent)
+          .setContentIntent(pendingIntent).setContentTitle( "Alert Notification" )
+          .setContentText( "$size or more service needs your attention" )
 
-      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+      notificationManager.notify(1.toInt(), builder.build());
 
     } else { //        .setContent(contentView)
       val builder = Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher_background)
-        .setContentIntent(pendingIntent)
-      notificationManager.notify(System.currentTimeMillis().toInt(), builder.build());
+        .setContentIntent(pendingIntent).setSound(soundUri)
+      notificationManager.notify(1.toInt(), builder.build());
+    }
+  }
+
+  private fun playNotificationSound() {
+    try {
+      val alarmSound = Uri.parse(
+        ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/raw/police_siren")
+      val r = RingtoneManager.getRingtone(applicationContext, alarmSound)
+      r.play()
+    } catch (e: Exception) {
+      e.printStackTrace()
     }
   }
 
