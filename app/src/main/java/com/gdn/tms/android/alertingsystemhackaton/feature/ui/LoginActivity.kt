@@ -28,6 +28,10 @@ import kotlinx.android.synthetic.main.activity_login.loading
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
 
+    if (sharedPref?.getBoolean("is_logged_in", false) == true){
+      startActivity(Intent(this, DashboardActivity::class.java))
+    }
+
     mViewModel.getMembers()
     observe()
 
