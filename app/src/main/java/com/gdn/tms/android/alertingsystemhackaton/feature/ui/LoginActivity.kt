@@ -13,6 +13,7 @@ import com.gdn.tms.android.alertingsystemhackaton.R
 import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.MembersViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_login.btn_login
 import kotlinx.android.synthetic.main.activity_login.et_email
 import kotlinx.android.synthetic.main.activity_login.et_password
@@ -22,13 +23,14 @@ import kotlinx.android.synthetic.main.activity_login.loading
 
   private val mViewModel : MembersViewModel by viewModels()
   private var hubName :String? = null
-  private var sharedPref : SharedPreferences? = null
+  @Inject lateinit var preferences:SharedPreferences
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
 
-    if (sharedPref?.getBoolean("is_logged_in", false) == true){
+    if (preferences.getBoolean("is_logged_in", false)){
+      finish()
       startActivity(Intent(this, DashboardActivity::class.java))
     }
 
@@ -75,12 +77,12 @@ import kotlinx.android.synthetic.main.activity_login.loading
     mViewModel.squadDetailsLiveData.observe(this, {
       loading.isVisible = false
       UserDetails.updateSquadDetails(it)
-      startActivity(Intent(this, DashboardActivity::class.java))
-      sharedPref = getPreferences(Context.MODE_PRIVATE)
-      with (sharedPref?.edit()) {
-        this?.putBoolean("is_logged_in", true)
-        this?.apply()
-      }
+      finish()
+      this.startActivity(
+        Intent(this, DashboardActivity::class.java).setFlags(
+          Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        ))
+      preferences.edit().putBoolean("is_logged_in", true).apply()
     })
   }
 }

@@ -35,6 +35,7 @@ import android.net.Uri
 import android.media.RingtoneManager
 
 import java.lang.Exception
+import javax.inject.Inject
 import okhttp3.internal.cache2.Relay.Companion.edit
 
 @AndroidEntryPoint class DashboardActivity : AppCompatActivity() {
@@ -42,7 +43,7 @@ import okhttp3.internal.cache2.Relay.Companion.edit
   private lateinit var binding: ActivityDashboardBinding
   private val viewModel : DashboardActivityViewModel by viewModels()
   private var handler :Handler? = null
-  private var sharedPref : SharedPreferences? = null
+  @Inject lateinit var preferences:SharedPreferences
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -159,11 +160,8 @@ import okhttp3.internal.cache2.Relay.Companion.edit
         true
       }
       R.id.logout -> {
-        sharedPref = getPreferences(Context.MODE_PRIVATE)
-        with (sharedPref?.edit()) {
-          this?.putBoolean("is_logged_in", true)
-          this?.apply()
-        }
+        finish()
+        preferences.edit().putBoolean("is_logged_in", false).apply()
         this.startActivity(
           Intent(this, LoginActivity::class.java).setFlags(
             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
