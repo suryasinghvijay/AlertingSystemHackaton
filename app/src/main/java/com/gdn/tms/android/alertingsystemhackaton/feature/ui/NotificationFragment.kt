@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.gdn.tms.android.alertingsystemhackaton.databinding.FragmentNotificati
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.NotificationModel
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_active_alert.loading
 import kotlinx.android.synthetic.main.item_notification.btn_ack
 
 @AndroidEntryPoint
@@ -39,6 +41,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
+    binding.loading.isVisible = true
     activityViewModel.fetchNotification(UserDetails.getUserName()?:"", "APP")
 
   }
@@ -53,6 +56,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
   private fun observer() {
     activityViewModel.notificationLiveData.observe(viewLifecycleOwner, {
       Log.e("adapter instance", notificationAdapter.toString())
+      loading.isVisible = false
       it?.let { notification ->
         notificationAdapter?.appendDataToList(notification)
       }
@@ -60,7 +64,7 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
   }
 
   override fun notification(notificationModel: NotificationModel) {
-      activityViewModel.acceptNotification(notificationModel.id!!, notificationModel.alert.status)
+      activityViewModel.acceptNotification(notificationModel.id!!, "ACKNOWLEDGED")
   }
 }
 

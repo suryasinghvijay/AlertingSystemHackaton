@@ -58,6 +58,7 @@ import java.lang.Exception
   }
 
   private fun generateNotification(size: Int) {
+    if (size == 0) return
     //playNotificationSound()
     val intent = Intent(this, DashboardActivity::class.java)
     val pendingIntent =

@@ -37,7 +37,7 @@ const val SHARED_PREFERENCES_NAME = "AlertingSystem"
   }.build()
 
   @Singleton @Provides fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
-    Retrofit.Builder().baseUrl("http://192.168.0.100:9191/")
+    Retrofit.Builder().baseUrl("http://192.168.0.101:9191/")
       .addConverterFactory(GsonConverterFactory.create(gson)).client(okHttpClient).build()
 
   @Provides fun provideGson(): Gson = GsonBuilder().create()

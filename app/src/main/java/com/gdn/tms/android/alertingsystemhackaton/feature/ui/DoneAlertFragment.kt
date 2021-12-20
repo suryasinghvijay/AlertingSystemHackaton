@@ -51,6 +51,7 @@ const val DONE = "done"
   private fun observer() {
     activityViewModel.pastAlertLiveData.observe(viewLifecycleOwner, {
       Log.e("adapter instance", activeAdapter.toString())
+
       activeAdapter?.appendDataToList(it.contents.toMutableList())
     })
   }

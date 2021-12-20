@@ -24,4 +24,7 @@ class MembersRepository @Inject constructor(private val apiService: ApiService) 
   suspend fun acceptNotification(id: String, status: String) = safeApiCall(networkCoroutineDispatcher){
     apiService.acceptNotification(id, status)
   }
+  suspend fun acceptAlert(id: String, status: String) = safeApiCall(networkCoroutineDispatcher){
+    apiService.acceptAlert(id, status)
+  }
 }

@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 class DashboardActivityViewModel @Inject constructor(private val repository: MembersRepository) : ViewModel(){
   val activeAlertLiveData = MutableLiveData<AlertResponse>()
   val notificationLiveData = MutableLiveData<MutableList<NotificationModel>>()
+  val acceptAlertDetailsResponse = MutableLiveData<Boolean>()
   val pastAlertLiveData = MutableLiveData<AlertResponse>()
   val exceptionHandler = SingleLiveEvent<String>()
 
@@ -66,6 +67,22 @@ class DashboardActivityViewModel @Inject constructor(private val repository: Mem
       when(val res = repository.acceptNotification(id, status)){
         is ResultWrapper.Success -> {
           notificationLiveData.postValue(res.value!!)
+        }
+        is ResultWrapper.HttpError -> {
+          Log.e("exception", "httpError")
+        }
+        is ResultWrapper.NetworkError -> {
+          Log.e("exception", "NetworkError")
+        }
+      }
+    }
+  }
+
+  fun acceptAlert(id: String, status: String) {
+    viewModelScope.launch {
+      when(val res = repository.acceptAlert(id, status)){
+        is ResultWrapper.Success -> {
+          acceptAlertDetailsResponse.postValue(res.value!!)
         }
         is ResultWrapper.HttpError -> {
           Log.e("exception", "httpError")

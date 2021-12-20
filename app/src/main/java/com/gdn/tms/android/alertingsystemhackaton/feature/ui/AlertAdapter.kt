@@ -49,6 +49,7 @@ class AlertAdapter(
   }
 
   fun appendDataToList(updateList: MutableList<AlertDetails>){
+    alertList.clear()
     alertList.addAll(updateList)
     notifyDataSetChanged()
   }

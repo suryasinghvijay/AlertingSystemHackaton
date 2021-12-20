@@ -32,4 +32,9 @@ interface ApiService {
     @Query("status") status: String
   ): MutableList<NotificationModel>
 
+  @POST("api/alert/acknowledge") suspend fun acceptAlert(
+    @Query("alertId") alertId: String,
+    @Query("status") status: String
+  ): Boolean
+
 }

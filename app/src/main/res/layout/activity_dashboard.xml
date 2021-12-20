@@ -33,7 +33,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:id="@+id/bottom_navigation"
-        android:background="@drawable/border_orange"
+        android:background="@drawable/office_button"
         app:menu="@menu/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

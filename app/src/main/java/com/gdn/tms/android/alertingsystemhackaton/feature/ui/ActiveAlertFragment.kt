@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.gdn.tms.android.alertingsystemhackaton.R
@@ -15,6 +16,7 @@ import com.gdn.tms.android.alertingsystemhackaton.feature.AlertFragmentCommunica
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_active_alert.loading
 
 const val PENDING = "pending"
 const val EVENT_DETAILS = "eventDetails"
@@ -39,6 +41,11 @@ const val EVENT_DETAILS = "eventDetails"
     super.onViewCreated(view, savedInstanceState)
     observer()
     initializeAdapter()
+    binding.loading.isVisible = true
+  }
+
+  override fun onResume() {
+    super.onResume()
     activityViewModel.fetchActiveAlertFromServer(UserDetails.getSquadName()?:"", 0, 50, "OPEN")
   }
 
@@ -51,6 +58,7 @@ const val EVENT_DETAILS = "eventDetails"
 
   private fun observer() {
     activityViewModel.activeAlertLiveData.observe(viewLifecycleOwner, {
+      loading.isVisible = false
       Log.e("adapter instance", activeAdapter.toString())
       activeAdapter?.appendDataToList(it.contents.toMutableList())
     })

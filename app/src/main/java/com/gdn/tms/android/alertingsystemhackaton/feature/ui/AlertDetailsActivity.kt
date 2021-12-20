@@ -9,6 +9,7 @@ import com.gdn.tms.android.alertingsystemhackaton.databinding.ActivityEventDetai
 import com.gdn.tms.android.alertingsystemhackaton.feature.model.AlertDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_event_details_layout.toolbar
 
 @AndroidEntryPoint class AlertDetailsActivity : AppCompatActivity() {
 
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
     val eventDetails = intent.extras?.getParcelable<AlertDetails>(EVENT_DETAILS)
     binding.apply {
       tvDate.text = eventDetails?.generatedDate
+      tvStatus.isVisible = (eventDetails?.status == "OPEN")
       tvDescription.text = eventDetails?.summary
       tvDetails.text = eventDetails?.details
       tvUpdatedBy.text = eventDetails?.updatedBy
@@ -33,10 +35,19 @@ import dagger.hilt.android.AndroidEntryPoint
       tvSquad.text = eventDetails?.squad
       tvPriority.text = eventDetails?.severity
       tvStatus.text = eventDetails?.status
+      button2.isVisible = (eventDetails?.status == "OPEN")
+      button.isVisible = (eventDetails?.status == "OPEN")
     }
 
+    binding.toolbar.setNavigationOnClickListener {
+      finish()
+    }
+    viewModel.acceptAlertDetailsResponse.observe(this, {
+      finish()
+    })
+
     binding.button2.setOnClickListener {
-      viewModel.acceptNotification(eventDetails?.id!!, eventDetails.status)
+      viewModel.acceptAlert(eventDetails?.id!!, "ACKNOWLEDGED")
     }
     binding.button.setOnClickListener {
       finish()
