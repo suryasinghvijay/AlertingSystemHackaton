@@ -1,6 +1,8 @@
 package com.gdn.tms.android.alertingsystemhackaton.feature.ui
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_login.loading
 
   private val mViewModel : MembersViewModel by viewModels()
   private var hubName :String? = null
+  private var sharedPref : SharedPreferences? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -69,6 +72,11 @@ import kotlinx.android.synthetic.main.activity_login.loading
       loading.isVisible = false
       UserDetails.updateSquadDetails(it)
       startActivity(Intent(this, DashboardActivity::class.java))
+      sharedPref = getPreferences(Context.MODE_PRIVATE)
+      with (sharedPref?.edit()) {
+        this?.putBoolean("is_logged_in", true)
+        this?.apply()
+      }
     })
   }
 }

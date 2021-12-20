@@ -29,17 +29,21 @@ import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.DashboardAct
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_dashboard.bottom_navigation
 import android.content.ContentResolver
+import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.net.Uri
 import android.media.RingtoneManager
 
 import java.lang.Exception
+import okhttp3.internal.cache2.Relay.Companion.edit
 
 @AndroidEntryPoint class DashboardActivity : AppCompatActivity() {
   private lateinit var navController: NavController
   private lateinit var binding: ActivityDashboardBinding
   private val viewModel : DashboardActivityViewModel by viewModels()
   private var handler :Handler? = null
+  private var sharedPref : SharedPreferences? = null
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Log.e("userDetails", UserDetails.toString())
@@ -152,6 +156,18 @@ import java.lang.Exception
     return when (item.getItemId()) {
       R.id.notification -> {
         navController.navigate(R.id.notificationFragment)
+        true
+      }
+      R.id.logout -> {
+        sharedPref = getPreferences(Context.MODE_PRIVATE)
+        with (sharedPref?.edit()) {
+          this?.putBoolean("is_logged_in", true)
+          this?.apply()
+        }
+        this.startActivity(
+          Intent(this, LoginActivity::class.java).setFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+          ))
         true
       }
       else -> super.onOptionsItemSelected(item)

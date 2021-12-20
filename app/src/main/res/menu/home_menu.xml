@@ -6,4 +6,11 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_bell"
         android:title="notification"/>
+
+    <item
+        android:id="@+id/logout"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="Logout"/>
 </menu>
