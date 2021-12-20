@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -37,6 +38,11 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     return binding.root
   }
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     observer()
@@ -63,10 +69,22 @@ class NotificationFragment : Fragment(), NotificationCommunicator {
     })
   }
 
+  override fun onPrepareOptionsMenu(menu: Menu) {
+    menu.findItem(
+      R.id.notification
+    )?.isVisible =
+      false
+    menu.findItem(
+      R.id.logout
+    )?.isVisible =
+      false
+  }
+
   override fun notification(notificationModel: NotificationModel) {
       activityViewModel.acceptNotification(notificationModel.id!!, "ACKNOWLEDGED")
   }
 }
+
 
 interface NotificationCommunicator{
   fun notification(notificationModel: NotificationModel)

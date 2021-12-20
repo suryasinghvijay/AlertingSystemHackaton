@@ -65,9 +65,6 @@ import okhttp3.internal.cache2.Relay.Companion.edit
   private fun generateNotification(size: Int) {
     if (size == 0) return
     //playNotificationSound()
-    val intent = Intent(this, DashboardActivity::class.java)
-    val pendingIntent =
-      PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     val notificationManager =
       this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     val soundUri =
@@ -86,14 +83,14 @@ import okhttp3.internal.cache2.Relay.Companion.edit
       notificationManager.createNotificationChannel(notificationChannel)
       val builder =
         Notification.Builder(this, "1").setSmallIcon(R.drawable.ic_launcher_background)
-          .setContentIntent(pendingIntent).setContentTitle( "Alert Notification" )
+          .setContentTitle( "Alert Notification" )
           .setContentText( "$size or more service needs your attention" )
 
       notificationManager.notify(1.toInt(), builder.build());
 
     } else { //        .setContent(contentView)
       val builder = Notification.Builder(this).setSmallIcon(R.drawable.ic_launcher_background)
-        .setContentIntent(pendingIntent).setSound(soundUri)
+        .setSound(soundUri)
       notificationManager.notify(1.toInt(), builder.build());
     }
   }
@@ -170,6 +167,10 @@ import okhttp3.internal.cache2.Relay.Companion.edit
       }
       else -> super.onOptionsItemSelected(item)
     }
+  }
+
+  override fun onSupportNavigateUp(): Boolean {
+    return (navController.navigateUp() || super.onSupportNavigateUp())
   }
 
   override fun onDestroy() {
