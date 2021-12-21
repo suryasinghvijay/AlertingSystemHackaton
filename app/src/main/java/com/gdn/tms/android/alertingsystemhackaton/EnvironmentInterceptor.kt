@@ -3,7 +3,6 @@ package com.gdn.tms.android.alertingsystemhackaton
 import android.content.SharedPreferences
 import android.util.Log
 import android.widget.Toast
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull

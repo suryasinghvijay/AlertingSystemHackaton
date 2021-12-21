@@ -73,6 +73,7 @@ import kotlinx.android.synthetic.main.activity_login.loading
   private fun observe(){
     val members = arrayListOf<String>()
     mViewModel.membersLiveData.observe(this, { member ->
+      members.clear()
       loading.isVisible = false
       if (member.any()) {
         member.forEach {
