@@ -2,6 +2,7 @@ package com.gdn.tms.android.alertingsystemhackaton.di.module
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.gdn.tms.android.alertingsystemhackaton.EnvironmentInterceptor
 import com.gdn.tms.android.alertingsystemhackaton.network.ApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -31,9 +32,11 @@ const val SHARED_PREFERENCES_NAME = "AlertingSystem"
   }
 
   @Provides @Singleton fun provideOkHttpClient(
-    httpLoggingInterceptor: HttpLoggingInterceptor
+    httpLoggingInterceptor: HttpLoggingInterceptor,
+    environmentInterceptor: EnvironmentInterceptor
   ): OkHttpClient = OkHttpClient().newBuilder().apply {
     addInterceptor(httpLoggingInterceptor)
+    addInterceptor(environmentInterceptor)
   }.build()
 
   @Singleton @Provides fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =

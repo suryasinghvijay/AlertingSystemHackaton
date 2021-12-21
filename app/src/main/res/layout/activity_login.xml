@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".feature.ui.LoginActivity">
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/welcome"
         style="@style/BaseTextViewStyle.Header1"
@@ -38,6 +49,81 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.3" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/office_button"
+        android:backgroundTint="#FDEDED"
+        android:text="submit"
+        android:textColor="#F66868"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/et_port_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/et_port_number"
+        app:layout_constraintTop_toTopOf="@+id/et_port_number" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_lbl" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_office_login"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/office_button"
+        android:gravity="center"
+        android:text="Office 365"
+        android:textAllCaps="false"
+        android:textColor="#F66868"
+        app:backgroundTint="@null"
+        app:icon="@drawable/ic_office"
+        app:iconGravity="textStart"
+        app:iconTint="#F66868"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_port_number"
+        style="@style/TextInputLayout.CustomInputLayout"
+        android:layout_width="0dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="hostname:portNumber"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bt_submit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/host_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_password_lbl"
         style="@style/TextInputLayout.CustomInputLayout"
@@ -50,9 +136,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
+            style="@style/TextInputEditText.CustomInputLayout"
             android:inputType="textPassword"
-            android:textSize="16sp"
-            style="@style/TextInputEditText.CustomInputLayout" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -66,60 +152,12 @@
         app:layout_constraintTop_toBottomOf="@id/guideline2">
 
         <AutoCompleteTextView
-            android:textSize="16sp"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
+            android:textSize="16sp"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        app:backgroundTint="@null"
-        android:textAllCaps="false"
-        android:background="@drawable/button_background"
-        android:id="@+id/btn_login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_lbl" />
-
-    <com.google.android.material.button.MaterialButton
-        android:background="@drawable/office_button"
-        app:backgroundTint="@null"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:id="@+id/btn_office_login"
-        android:layout_width="0dp"
-        app:icon="@drawable/ic_office"
-        app:iconTint="#F66868"
-        app:iconGravity="textStart"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textColor="#F66868"
-        android:textAllCaps="false"
-        android:text="Office 365"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="50dp"
-        android:visibility="gone"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

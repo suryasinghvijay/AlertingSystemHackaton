@@ -9,14 +9,17 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import com.gdn.tms.android.alertingsystemhackaton.HOSTNAME
 import com.gdn.tms.android.alertingsystemhackaton.R
 import com.gdn.tms.android.alertingsystemhackaton.UserDetails
 import com.gdn.tms.android.alertingsystemhackaton.feature.viewmodel.MembersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_login.bt_submit
 import kotlinx.android.synthetic.main.activity_login.btn_login
 import kotlinx.android.synthetic.main.activity_login.et_email
 import kotlinx.android.synthetic.main.activity_login.et_password
+import kotlinx.android.synthetic.main.activity_login.host_name
 import kotlinx.android.synthetic.main.activity_login.loading
 
 @AndroidEntryPoint class LoginActivity : AppCompatActivity() {
@@ -59,11 +62,18 @@ import kotlinx.android.synthetic.main.activity_login.loading
         )
       }
     }
+    bt_submit.setOnClickListener {
+      val ipDetails = host_name.text
+      preferences.edit().putString(HOSTNAME, "http://$ipDetails/").commit()
+      loading.isVisible = true
+      mViewModel.getMembers()
+    }
   }
 
   private fun observe(){
     val members = arrayListOf<String>()
     mViewModel.membersLiveData.observe(this, { member ->
+      loading.isVisible = false
       if (member.any()) {
         member.forEach {
           it.name?.let { it1 -> members.add(it1) }
