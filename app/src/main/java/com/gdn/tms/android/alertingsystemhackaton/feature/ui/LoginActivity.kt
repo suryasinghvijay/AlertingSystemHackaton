@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_login.loading
   private val mViewModel : MembersViewModel by viewModels()
   private var hubName :String? = null
   @Inject lateinit var preferences:SharedPreferences
+  val members = arrayListOf<String>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -63,6 +64,7 @@ import kotlinx.android.synthetic.main.activity_login.loading
       }
     }
     bt_submit.setOnClickListener {
+      members.clear()
       val ipDetails = host_name.text
       preferences.edit().putString(HOSTNAME, "http://$ipDetails/").commit()
       loading.isVisible = true
@@ -71,7 +73,6 @@ import kotlinx.android.synthetic.main.activity_login.loading
   }
 
   private fun observe(){
-    val members = arrayListOf<String>()
     mViewModel.membersLiveData.observe(this, { member ->
       members.clear()
       loading.isVisible = false
